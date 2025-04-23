@@ -25,9 +25,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Download Hugging Face models
-        run: python hf_download.py
-
       - name: Run FramePack Demo
         run: |
           python demo_gradio.py --share
