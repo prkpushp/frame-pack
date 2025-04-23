@@ -1,0 +1,30 @@
+name: Run FramePack
+
+on:
+  workflow_dispatch:  # manual trigger
+
+jobs:
+  run-framepack:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download Hugging Face models
+        run: python hf_download.py
+
+      - name: Run FramePack Demo
+        run: |
+          python demo_gradio.py --share
